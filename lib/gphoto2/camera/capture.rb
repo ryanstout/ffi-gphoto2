@@ -16,6 +16,10 @@ module GPhoto2
         CameraFile.new(self, path.folder, path.name)
       end
 
+      def trigger
+        gp_camera_trigger_capture(ptr, context.ptr)
+      end
+
       # Captures a preview from the camera.
       #
       # Previews are not stored on the camera but are returned as data in a

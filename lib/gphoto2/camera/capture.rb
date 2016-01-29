@@ -17,7 +17,9 @@ module GPhoto2
       end
 
       def trigger
-        gp_camera_trigger_capture(ptr, context.ptr)
+        rc = gp_camera_trigger_capture(ptr, context.ptr)
+        GPhoto2.check!(rc)
+        nil
       end
 
       # Captures a preview from the camera.

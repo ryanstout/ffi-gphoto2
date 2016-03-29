@@ -18,6 +18,7 @@ module GPhoto2
     def initialize(camera, folder = nil, name = nil)
       @camera = camera
       @folder, @name = folder, name
+      @loaded = false
       new
     end
 
@@ -50,13 +51,14 @@ module GPhoto2
     def load_as(type)
       rc = @camera.gp_camera_file_get(@camera.ptr, folder, name, type, ptr, @camera.context.ptr)
       GPhoto2.check!(rc)
+      @loaded = true
     end
 
     private
 
     def data_and_size
       @data_and_size ||= begin
-        @camera.file(self) unless preview?
+        @camera.file(self) unless preview? || @loaded
         get_data_and_size
       end
     end

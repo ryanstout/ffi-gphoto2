@@ -48,7 +48,7 @@ module GPhoto2
     end
 
     def load_as(type)
-      rc = @camera.gp_camera_file_get(camera.ptr, folder, name, type, ptr, @camera.context.ptr)
+      rc = @camera.gp_camera_file_get(@camera.ptr, folder, name, type, ptr, @camera.context.ptr)
       GPhoto2.check!(rc)
     end
 

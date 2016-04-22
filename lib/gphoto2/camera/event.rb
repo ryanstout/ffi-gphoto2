@@ -43,6 +43,7 @@ module GPhoto2
             # anytime this event comes through
             path = CameraFilePath.new(path_ptr)
             # CameraFile.new(self, path.folder, path.name)
+            [path.folder, path.name]
           when :folder_added
             path_ptr = FFI::GPhoto2::CameraFilePath.new(data)
             path = CameraFilePath.new(path_ptr)

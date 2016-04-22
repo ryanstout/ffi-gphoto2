@@ -39,8 +39,10 @@ module GPhoto2
             data.null? ? nil : data.read_string
           when :file_added
             path_ptr = FFI::GPhoto2::CameraFilePath.new(data)
+            # Changed by Ryan, just use the path, so we don't load the photo
+            # anytime this event comes through
             path = CameraFilePath.new(path_ptr)
-            CameraFile.new(self, path.folder, path.name)
+            # CameraFile.new(self, path.folder, path.name)
           when :folder_added
             path_ptr = FFI::GPhoto2::CameraFilePath.new(data)
             path = CameraFilePath.new(path_ptr)

@@ -63,6 +63,7 @@ module FFI
     # gphoto2/gphoto2-file.h
     attach_function :gp_file_new, [:pointer], :int
     attach_function :gp_file_free, [CameraFile.by_ref], :int
+    attach_function :gp_file_unref, [CameraFile.by_ref], :int
     attach_function :gp_file_get_data_and_size, [CameraFile.by_ref, :pointer, :pointer], :int
 
     # gphoto2/gphoto2-list.h

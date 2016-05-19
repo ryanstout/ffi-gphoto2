@@ -128,12 +128,16 @@ module GPhoto2
         @dirty
       end
 
+      # Added by ryan to fetch a single value
       def get_single_value(key)
         widget_ptr = FFI::MemoryPointer.new(FFI::GPhoto2::CameraWidget)
         rc = gp_camera_get_single_config(ptr, key, widget_ptr, context.ptr)
         GPhoto2.check!(rc)
         widget = FFI::GPhoto2::CameraWidget.new(widget_ptr.read_pointer)
-        CameraWidget.factory(widget)
+        widget = CameraWidget.factory(widget)
+
+        # Update the camera hash
+        self[key].value = widget.value
       end
 
       private

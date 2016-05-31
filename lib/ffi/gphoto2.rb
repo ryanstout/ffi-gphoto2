@@ -57,7 +57,7 @@ module FFI
 
     # Added by ryan
     attach_function :gp_camera_get_single_config, [Camera.by_ref, :string, :pointer, GPContext.by_ref], :int
-    attach_function :ptp_nikon_get_liveview_image [:pointer, :pointer, :pointer], :int
+    attach_function :ptp_nikon_get_liveview_image, [:pointer, :pointer, :pointer], :int
 
 
     # gphoto2/gphoto2-context.h

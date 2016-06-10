@@ -138,6 +138,8 @@ module GPhoto2
 
         # Update the camera hash
         self[key].value = widget.value
+
+        widget.value
       end
 
       private

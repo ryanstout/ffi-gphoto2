@@ -137,7 +137,7 @@ module GPhoto2
         widget = CameraWidget.factory(widget)
 
         # Update the camera hash
-        self[key].value = widget.value
+        # self[key].value = widget.value
 
         widget.value
       end

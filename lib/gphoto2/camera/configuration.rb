@@ -136,11 +136,15 @@ module GPhoto2
         widget = FFI::GPhoto2::CameraWidget.new(widget_ptr.read_pointer)
         widget = CameraWidget.factory(widget)
 
+        value = widget.value
         # Update the camera hash
         # self.config[key.to_s].value = widget.value
-        self.config[key.to_s] = widget
+        puts "CHANGE VALUE: #{value.inspect}"
+        # self.config[key.to_s].value = widget.value
+        self[key.to_s] = value
+        @dirty = false
 
-        widget.value
+        value
       end
 
       private

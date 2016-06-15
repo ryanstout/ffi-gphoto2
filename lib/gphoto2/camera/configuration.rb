@@ -143,8 +143,10 @@ module GPhoto2
         # self.config[key.to_s].value = widget.value
         # puts "CHANGE VALUE: #{value.inspect}"
         # self.config[key.to_s].value = widget.value
-        self[key] = value
-        @dirty = false
+        if update
+          self[key] = value
+          @dirty = false
+        end
 
         value
       end

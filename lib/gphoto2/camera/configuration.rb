@@ -129,7 +129,9 @@ module GPhoto2
       end
 
       # Added by ryan to fetch a single value
-      def get_single_value(key)
+      # Only update if the value is not read only, otherwise there is some
+      # weird crashes
+      def get_single_value(key, update=true)
         widget_ptr = FFI::MemoryPointer.new(FFI::GPhoto2::CameraWidget)
         rc = gp_camera_get_single_config(ptr, key, widget_ptr, context.ptr)
         GPhoto2.check!(rc)
@@ -139,9 +141,9 @@ module GPhoto2
         value = widget.value
         # Update the camera hash
         # self.config[key.to_s].value = widget.value
-        puts "CHANGE VALUE: #{value.inspect}"
+        # puts "CHANGE VALUE: #{value.inspect}"
         # self.config[key.to_s].value = widget.value
-        self[key.to_s] = value
+        self[key] = value
         @dirty = false
 
         value

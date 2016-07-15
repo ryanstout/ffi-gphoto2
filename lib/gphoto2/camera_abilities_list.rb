@@ -3,6 +3,8 @@ module GPhoto2
     include FFI::GPhoto2
     include GPhoto2::Struct
 
+    attr_accessor :context
+
     # @param [GPhoto2::Context] context
     def initialize(context)
       @context = context

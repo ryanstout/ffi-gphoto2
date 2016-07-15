@@ -30,6 +30,10 @@ module GPhoto2
         Camera.new(model, port)
       end
 
+      # Added by ryan.  Don't forget to release
+      ab_ptr = abilities.ptr
+      FFI::GPhoto2::CameraAbilitiesList.release(ab_ptr)
+
       context.finalize
 
       entries

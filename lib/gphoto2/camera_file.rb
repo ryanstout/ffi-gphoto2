@@ -78,24 +78,26 @@ module GPhoto2
 # module GPhoto2
   # class CameraFile
     def set_data_and_size(bytes)
-      data = FFI::MemoryPointer.new(:uchar, bytes.size)
-      # data.put_string(bytes)
-      data.put_bytes(0, bytes, 0)
-      # data_ptr = FFI::MemoryPointer.new(:pointer)
-      # data_ptr.write_pointer(data)
-      size = FFI::MemoryPointer.new(:ulong)
-      ulong_size = [bytes.size].pack('L_')
-      # size.put_string(ulong_size)
-      size.put_bytes(0, ulong_size, 0)
+      # data = FFI::MemoryPointer.new(:uchar, bytes.size)
+      # # data.put_string(bytes)
+      # data.put_bytes(0, bytes, 0)
+      # # data_ptr = FFI::MemoryPointer.new(:pointer)
+      # # data_ptr.write_pointer(data)
+      # size = FFI::MemoryPointer.new(:ulong)
+      # ulong_size = [bytes.size].pack('L_')
+      # # size.put_string(ulong_size)
+      # size.put_bytes(0, ulong_size, 0)
 
       puts "WRITE: #{bytes.size}"
-      rc = gp_file_set_data_and_size(ptr, data, bytes.size)
+      rc = gp_file_set_data_and_size(ptr, bytes, bytes.size)
       puts "RC: #{rc.inspect}"
       GPhoto2.check!(rc)
 
       # Set mime
       mt_ptr = FFI::MemoryPointer.from_string("jpg")
-      gp_file_set_mime_type(ptr, mt_ptr)
+      rc = gp_file_set_mime_type(ptr, mt_ptr)
+      puts "RC2: #{rc}"
+      GPhoto2.check!(rc)
     end
   # end
 # end

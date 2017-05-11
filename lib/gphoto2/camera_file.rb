@@ -74,6 +74,23 @@ module GPhoto2
       @ptr = FFI::GPhoto2::CameraFile.new(ptr.read_pointer)
     end
 
+    def set_data_and_size(bytes)
+      data = FFI::MemoryPointer.new(:uchar, bytes.size)
+      # data.put_string(bytes)
+      data.put_bytes(0, bytes, 0)
+      # data_ptr = FFI::MemoryPointer.new(:pointer)
+      # data_ptr.write_pointer(data)
+      size = FFI::MemoryPointer.new(:ulong)
+      ulong_size = [bytes.size].pack('L')
+      # size.put_string(ulong_size)
+      size.put_bytes(0, ulong_size, 0)
+
+      puts "WRITE: #{bytes.size}"
+      rc = gp_file_set_data_and_size(ptr, data, bytes.size)
+      puts "RC: #{rc.inspect}"
+      GPhoto2.check!(rc)
+    end
+
     def get_data_and_size
       data = FFI::MemoryPointer.new(:uchar)
       data_ptr = FFI::MemoryPointer.new(:pointer)

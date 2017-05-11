@@ -77,6 +77,7 @@ module GPhoto2
 # module GPhoto2
   # class CameraFile
     def new_from_fd(fd)
+      @loaded = true
       ptr = FFI::MemoryPointer.new(FFI::GPhoto2::CameraFile)
       rc = gp_file_new_from_fd(ptr, fd)
       GPhoto2.check!(rc)
@@ -101,13 +102,13 @@ module GPhoto2
 
       puts "WRITE: #{bytes.size}"
       rc = gp_file_set_data_and_size(ptr, data, bytes.size)
-      puts "RC: #{rc.inspect}"
+      # puts "RC: #{rc.inspect}"
       GPhoto2.check!(rc)
 
       # Set mime
       # mt_ptr = FFI::MemoryPointer.from_string("jpg")
       rc = gp_file_set_mime_type(ptr, "jpg")
-      puts "RC2: #{rc}"
+      # puts "RC2: #{rc}"
       GPhoto2.check!(rc)
     end
   # end

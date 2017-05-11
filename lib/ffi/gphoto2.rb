@@ -78,7 +78,7 @@ module FFI
     # int gp_file_set_mime_type (CameraFile *file, const char *mime_type)
     attach_function :gp_file_set_mime_type, [CameraFile.by_ref, :string], :int
     # int gp_file_new_from_fd (CameraFile **file, int fd)
-    attach_function :gp_file_new_from_fd, [CameraFile.by_ref, :int], :int
+    attach_function :gp_file_new_from_fd, [:pointer, :int], :int
 
 
     # gphoto2/gphoto2-list.h

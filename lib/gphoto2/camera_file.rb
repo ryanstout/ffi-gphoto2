@@ -74,6 +74,13 @@ module GPhoto2
       @ptr = FFI::GPhoto2::CameraFile.new(ptr.read_pointer)
     end
 
+    def new_from_fd(fd)
+      ptr = FFI::MemoryPointer.new(FFI::GPhoto2::CameraFile)
+      rc = gp_file_new_from_fd(ptr, fd.to_i)
+      GPhoto2.check!(rc)
+      @ptr = FFI::GPhoto2::CameraFile.new(ptr.read_pointer)
+    end
+
 
 # module GPhoto2
   # class CameraFile

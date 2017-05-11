@@ -75,8 +75,8 @@ module GPhoto2
     end
 
 
-module GPhoto2
-  class CameraFile
+# module GPhoto2
+  # class CameraFile
     def set_data_and_size(bytes)
       data = FFI::MemoryPointer.new(:uchar, bytes.size)
       # data.put_string(bytes)
@@ -95,10 +95,10 @@ module GPhoto2
 
       # Set mime
       mt_ptr = FFI::MemoryPointer.from_string("jpg")
-      gp_file_set_mime_type(ptr, mt_str);
+      gp_file_set_mime_type(ptr, mt_ptr)
     end
-  end
-end
+  # end
+# end
 
     def get_data_and_size
       data = FFI::MemoryPointer.new(:uchar)

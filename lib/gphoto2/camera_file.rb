@@ -94,8 +94,8 @@ module GPhoto2
       GPhoto2.check!(rc)
 
       # Set mime
-      mt_ptr = FFI::MemoryPointer.from_string("jpg")
-      rc = gp_file_set_mime_type(ptr, mt_ptr)
+      # mt_ptr = FFI::MemoryPointer.from_string("jpg")
+      rc = gp_file_set_mime_type(ptr, "jpg")
       puts "RC2: #{rc}"
       GPhoto2.check!(rc)
     end

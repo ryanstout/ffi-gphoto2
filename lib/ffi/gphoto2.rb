@@ -72,7 +72,7 @@ module FFI
     # int gp_file_get_data_and_size (CameraFile *file, const char **data, unsigned long int *size)
     attach_function :gp_file_get_data_and_size, [CameraFile.by_ref, :pointer, :pointer], :int
     # int gp_file_set_data_and_size (CameraFile *file, char *data, unsigned long int size)
-    attach_function :gp_file_set_data_and_size, [CameraFile.by_ref, :string, :ulong], :int
+    attach_function :gp_file_set_data_and_size, [CameraFile.by_ref, :pointer, :ulong], :int
     # int gp_file_set_mime_type (CameraFile *file, const char *mime_type)
     attach_function :gp_file_set_mime_type, [CameraFile.by_ref, :string], :int
 

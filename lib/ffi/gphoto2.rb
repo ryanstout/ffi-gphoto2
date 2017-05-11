@@ -69,7 +69,10 @@ module FFI
     attach_function :gp_file_new, [:pointer], :int
     attach_function :gp_file_free, [CameraFile.by_ref], :int
     attach_function :gp_file_unref, [CameraFile.by_ref], :int
+    # int gp_file_get_data_and_size (CameraFile *file, const char **data, unsigned long int *size)
     attach_function :gp_file_get_data_and_size, [CameraFile.by_ref, :pointer, :pointer], :int
+    # int gp_file_set_data_and_size (CameraFile *file, char *data, unsigned long int size)
+    attach_function :gp_file_set_data_and_size, [CameraFile.by_ref, :pointer, :int], :int
 
     # gphoto2/gphoto2-list.h
     attach_function :gp_list_new, [:pointer], :int

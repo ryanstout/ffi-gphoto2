@@ -35,6 +35,7 @@ require 'gphoto2/entry'
 require 'gphoto2/port_info'
 require 'gphoto2/port_info_list'
 require 'gphoto2/port_result'
+require 'gphoto2/error'
 
 require 'gphoto2/version'
 
@@ -50,6 +51,6 @@ module GPhoto2
   def self.check!(rc)
     logger.debug "#{caller.first} => #{rc}" if ENV['DEBUG']
     return if rc >= FFI::GPhoto2Port::GP_OK
-    raise "#{PortResult.as_string(rc)} (#{rc})"
+    raise GPhoto2::Error.error_from_port_result(rc)
   end
 end

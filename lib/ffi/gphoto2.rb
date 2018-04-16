@@ -1,4 +1,5 @@
 require 'ffi/gphoto2_port'
+require 'ffi/gphoto2/result'
 
 module FFI
   module GPhoto2

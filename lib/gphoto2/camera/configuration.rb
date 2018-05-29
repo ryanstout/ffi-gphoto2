@@ -142,6 +142,8 @@ module GPhoto2
         # bypass the @dirty flag
         self[key].value = value
 
+        puts "updating single value for: #{key} - value: #{value}, readonly: #{readonly}"
+
         # Update readonly on this widget as well
         rc = gp_widget_set_readonly(self[key].ptr, readonly)
         GPhoto2.check!(rc)

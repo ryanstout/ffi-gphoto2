@@ -137,9 +137,14 @@ module GPhoto2
         widget = CameraWidget.factory(widget)
 
         value = widget.value
+        readonly = widget.readonly? ? 1 : 0
 
         # bypass the @dirty flag
         self[key].value = value
+
+        # Update readonly on this widget as well
+        rc = gp_widget_set_readonly(self[key].ptr, readonly)
+        GPhoto2.check!(rc)
 
         # Setting the value flagged this widget as changed.
         # Set changed back to false so this value

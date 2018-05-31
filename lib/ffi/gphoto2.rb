@@ -95,6 +95,9 @@ module FFI
     attach_function :gp_widget_get_child, [CameraWidget.by_ref, :int, :pointer], :int
     attach_function :gp_widget_set_value, [CameraWidget.by_ref, :pointer], :int
     attach_function :gp_widget_get_value, [CameraWidget.by_ref, :pointer], :int
+    attach_function :gp_widget_set_changed, [CameraWidget.by_ref, :int], :int
+    attach_function :gp_widget_get_readonly, [CameraWidget.by_ref, :pointer], :int
+    attach_function :gp_widget_set_readonly, [CameraWidget.by_ref, :int], :int
     attach_function :gp_widget_get_name, [CameraWidget.by_ref, :pointer], :int
     attach_function :gp_widget_get_type, [CameraWidget.by_ref, :pointer], :int
     attach_function :gp_widget_get_label, [CameraWidget.by_ref, :pointer], :int

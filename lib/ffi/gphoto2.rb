@@ -67,7 +67,6 @@ module FFI
 
     attach_function :gp_camera_file_read, [Camera.by_ref, :string, :string, CameraFileType, :ulong_long, :pointer, :pointer, GPContext.by_ref], :int, blocking: true
 
-
     attach_function :gp_filesystem_get_info, [:pointer, :string, :string, CameraFileInfo.by_ref, GPContext.by_ref], :int, blocking: true
 
 

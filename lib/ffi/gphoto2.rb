@@ -39,12 +39,12 @@ module FFI
     require 'ffi/gphoto2/gp_context'
 
     # gphoto2/gphoto2-abilities-list.h
-    attach_function :gp_abilities_list_new, [:pointer], :int, blocking: true
-    attach_function :gp_abilities_list_free, [:pointer], :int, blocking: true
-    attach_function :gp_abilities_list_load, [CameraAbilitiesList.by_ref, GPContext.by_ref], :int, blocking: true
-    attach_function :gp_abilities_list_detect, [CameraAbilitiesList.by_ref, GPhoto2Port::GPPortInfoList.by_ref, CameraList.by_ref, GPContext.by_ref], :int, blocking: true
-    attach_function :gp_abilities_list_lookup_model, [CameraAbilitiesList.by_ref, :string], :int, blocking: true
-    attach_function :gp_abilities_list_get_abilities, [CameraAbilitiesList.by_ref, :int, CameraAbilities.by_ref], :int, blocking: true
+    attach_function :gp_abilities_list_new, [:pointer], :int#, blocking: true
+    attach_function :gp_abilities_list_free, [:pointer], :int#, blocking: true
+    attach_function :gp_abilities_list_load, [CameraAbilitiesList.by_ref, GPContext.by_ref], :int#, blocking: true
+    attach_function :gp_abilities_list_detect, [CameraAbilitiesList.by_ref, GPhoto2Port::GPPortInfoList.by_ref, CameraList.by_ref, GPContext.by_ref], :int#, blocking: true
+    attach_function :gp_abilities_list_lookup_model, [CameraAbilitiesList.by_ref, :string], :int#, blocking: true
+    attach_function :gp_abilities_list_get_abilities, [CameraAbilitiesList.by_ref, :int, CameraAbilities.by_ref], :int#, blocking: true
 
     # gphoto2/gphoto2-camera.h
     attach_function :gp_camera_new, [:pointer], :int

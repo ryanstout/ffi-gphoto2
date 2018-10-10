@@ -80,7 +80,7 @@ module FFI
 
     # gphoto2/gphoto2-file.h
     attach_function :gp_file_new, [:pointer], :int, blocking: true
-    attach_function :gp_file_free, [:pointer], :int, blocking: true
+    attach_function :gp_file_free, [:pointer], :int#, blocking: true
     attach_function :gp_file_unref, [CameraFile.by_ref], :int, blocking: true
     # int gp_file_get_data_and_size (CameraFile *file, const char **data, unsigned long int *size)
     attach_function :gp_file_get_data_and_size, [CameraFile.by_ref, :pointer, :pointer], :int, blocking: true
@@ -94,7 +94,7 @@ module FFI
 
     # gphoto2/gphoto2-list.h
     attach_function :gp_list_new, [:pointer], :int, blocking: true
-    attach_function :gp_list_free, [:pointer], :int, blocking: true
+    attach_function :gp_list_free, [:pointer], :int#, blocking: true
     attach_function :gp_list_count, [CameraList.by_ref], :int, blocking: true
     attach_function :gp_list_get_name, [CameraList.by_ref, :int, :pointer], :int, blocking: true
     attach_function :gp_list_get_value, [CameraList.by_ref, :int, :pointer], :int, blocking: true
@@ -103,7 +103,7 @@ module FFI
     attach_function :gp_widget_set_readonly, [CameraWidget.by_ref, :int], :int, blocking: true
 
     # gphoto2/gphoto2-widget.h
-    attach_function :gp_widget_free, [CameraWidget.by_ref], :int, blocking: true
+    attach_function :gp_widget_free, [CameraWidget.by_ref], :int#, blocking: true
     attach_function :gp_widget_count_children, [CameraWidget.by_ref], :int, blocking: true
     attach_function :gp_widget_get_child, [CameraWidget.by_ref, :int, :pointer], :int, blocking: true
     attach_function :gp_widget_set_value, [CameraWidget.by_ref, :pointer], :int, blocking: true

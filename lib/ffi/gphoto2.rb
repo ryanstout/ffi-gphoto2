@@ -73,10 +73,6 @@ module FFI
 
     attach_function :gp_camera_get_single_config, [Camera.by_ref, :string, :pointer, GPContext.by_ref], :int, blocking: true
 
-    # Added cache management
-    attach_function :gp_camera_get_filesys_optimize, [], :int, blocking: true
-    attach_function :gp_camera_set_filesys_optimize, [:int], :void, blocking: true
-
     # gphoto2/gphoto2-context.h
     attach_function :gp_context_new, [], :pointer, blocking: true
     attach_function :gp_context_ref, [GPContext.by_ref], :void, blocking: true

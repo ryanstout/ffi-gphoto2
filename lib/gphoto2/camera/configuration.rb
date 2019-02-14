@@ -106,10 +106,16 @@ module GPhoto2
       #   camera['shutterspeed2'] # => "1/60"
       #
       # @param [Hash<String,Object>] attributes
+      # @param [Boolean] force_update mark widgets as changed even if the value is the same to force a write to the camera
       # @return [Boolean] whether the configuration saved
-      def update(attributes = {})
+      def update(attributes = {}, force_update=false)
         attributes.each do |key, value|
           self[key] = value
+
+          if force_update && self[key]
+            rc = gp_widget_set_changed(self[key].ptr, 0)
+            GPhoto2.check!(rc)
+          end
         end
 
         save

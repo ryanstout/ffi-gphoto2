@@ -113,7 +113,7 @@ module GPhoto2
           self[key] = value
 
           if force_update && self[key]
-            rc = gp_widget_set_changed(self[key].ptr, 0)
+            rc = gp_widget_set_changed(self[key].ptr, 1)
             GPhoto2.check!(rc)
           end
         end

@@ -150,9 +150,8 @@ module GPhoto2
           # old_widget.finalize
 
           # Replace it with the more recent one
-          # @config[key] = widget
+          @config[key] = widget
 
-          gp_camera_set_single_config(ptr, key, widget.ptr, context.ptr)
         end
 
         value

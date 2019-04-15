@@ -146,12 +146,11 @@ module GPhoto2
         value = widget.value
 
         if (old_widget = self[key])
-          # Free the old widget
-          old_widget.finalize
-
           # Replace it with the more recent one
           @config[key] = widget
 
+          # Free the old widget
+          old_widget.finalize
         end
 
         value

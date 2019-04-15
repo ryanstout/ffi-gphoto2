@@ -144,27 +144,14 @@ module GPhoto2
         widget = CameraWidget.factory(widget)
 
         value = widget.value
-        readonly = widget.readonly? ? 1 : 0
 
-        if self[key]
-          # bypass the @dirty flag
-          # Check that the widget exists first.
-          self[key].value = value
+        if (old_widget = self[key])
+          # Free the old widget
+          old_widget.finalize
 
-          # Update readonly on this widget as well
-          rc = gp_widget_set_readonly(self[key].ptr, readonly)
-          GPhoto2.check!(rc)
-
-          # Setting the value flagged this widget as changed.
-          # Set changed back to false so this value
-          # doesn't unecessarily get written back to
-          # the camera on the next set_config call (which can cause errors)
-          rc = gp_widget_set_changed(self[key].ptr, 0)
-          GPhoto2.check!(rc)
+          # Replace it with the more recent one
+          @config[key] = widget
         end
-
-        # Free the temp widget
-        widget.finalize
 
         value
       end

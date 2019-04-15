@@ -147,10 +147,12 @@ module GPhoto2
 
         if (old_widget = self[key])
           # Free the old widget
-          old_widget.finalize
+          # old_widget.finalize
 
           # Replace it with the more recent one
-          @config[key] = widget
+          # @config[key] = widget
+
+          gp_camera_set_single_config(ptr, key, widget.ptr, context.ptr)
         end
 
         value

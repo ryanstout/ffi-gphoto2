@@ -72,6 +72,7 @@ module FFI
     attach_function :gp_file_append, [CameraFile.by_ref, :pointer, :ulong_long], :int, blocking: true
 
     attach_function :gp_camera_get_single_config, [Camera.by_ref, :string, :pointer, GPContext.by_ref], :int, blocking: true
+    attach_function :gp_camera_set_single_config, [Camera.by_ref, :string, :pointer, GPContext.by_ref], :int, blocking: true
 
     # gphoto2/gphoto2-context.h
     attach_function :gp_context_new, [], :pointer, blocking: true

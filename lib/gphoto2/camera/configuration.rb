@@ -146,6 +146,7 @@ module GPhoto2
         value = widget.value
 
         if (old_widget = self[key])
+          puts "OLD WIDGET: #{old_widget.inspect} vs NEW: #{widget.inspect}"
           # Replace it with the more recent one
           @config[key] = widget
 

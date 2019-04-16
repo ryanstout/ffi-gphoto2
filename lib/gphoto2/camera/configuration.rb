@@ -148,7 +148,7 @@ module GPhoto2
         if (old_widget = self[key])
           puts "OLD WIDGET: #{old_widget.inspect} vs NEW: #{widget.inspect}"
           # Replace it with the more recent one
-          widget.parent = old_widget.parent
+          widget.instance_variable_set(:@parent, old_widget.get_instance_variable(:@parent))
           @config[key] = widget
 
           # Free the old widget

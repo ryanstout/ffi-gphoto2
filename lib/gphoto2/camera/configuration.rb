@@ -146,9 +146,17 @@ module GPhoto2
         value = widget.value
 
         if (old_widget = self[key])
-          puts "OLD WIDGET: #{old_widget.inspect} vs NEW: #{widget.inspect}"
           # Replace it with the more recent one
-          widget.instance_variable_set(:@parent, old_widget.get_instance_variable(:@parent))
+          old_parent = old_widget.instance_variable_get(:@parent)
+
+          index = old_parent.children.find_index {|v| v.name == widget.name }
+
+          # Replace the pointer in the parents children array to the new widget
+          # 's address
+          parent_child_ptr = old_parent.ptr[:children] + (index * FFI::Pointer.size)
+          parent_child_ptr.write(:pointer, widget.ptr)
+
+          widget.instance_variable_set(:@parent, old_parent)
           @config[key] = widget
 
           # Free the old widget

@@ -135,21 +135,33 @@ module GPhoto2
         @dirty
       end
 
-      # Added by ryan to fetch a single value
-      def get_single_value(key)
+      # Added by ryan to fetch a single value and update the choices
+     def get_single_value(key)
         widget_ptr = FFI::MemoryPointer.new(:pointer)
         rc = gp_camera_get_single_config(ptr, key, widget_ptr, context.ptr)
         GPhoto2.check!(rc)
-        widget = FFI::GPhoto2::CameraWidget.new(widget_ptr.read_pointer)
-        widget = CameraWidget.factory(widget)
+        ffi_widget = FFI::GPhoto2::CameraWidget.new(widget_ptr.read_pointer)
+        widget = CameraWidget.factory(ffi_widget)
 
         value = widget.value
         readonly = widget.readonly? ? 1 : 0
 
-        if self[key]
-          # bypass the @dirty flag
           # Check that the widget exists first.
-          self[key].value = value
+        if (old_widget = self[key])
+          old_widget.value = value
+
+          # We swap the pointers for the choice so when the struct frees choices
+          # it does so on the old one.
+          old_choices = old_widget.ptr[:choice]
+          new_choices = ffi_widget[:choice]
+          old_widget.ptr[:choice] = new_choices
+          ffi_widget[:choice] = old_choices
+
+          # Update choice_count also.
+          old_choice_count = old_widget.ptr[:choice_count]
+          new_choice_count = ffi_widget[:choice_count]
+          old_widget.ptr[:choice_count] = new_choice_count
+          ffi_widget[:choice_count] = old_choice_count
 
           # Update readonly on this widget as well
           rc = gp_widget_set_readonly(self[key].ptr, readonly)
